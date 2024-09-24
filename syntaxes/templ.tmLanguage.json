@@ -41,35 +41,35 @@
           "match": "{{\\s*(end)\\s*}}",
           "captures": {
             "0": {
-              "name": "punctuation.definition.begin.bracket.curly.go"
+              "name": "punctuation.section.embedded.begingo-template"
             },
             "1": {
               "name": "keyword.control.go"
             },
             "2": {
-              "name": "punctuation.definition.end.bracket.curly.go"
+              "name": "punctuation.section.embedded.endgo-template"
             }
           },
           "name": "expression.gotempl-node-end.templ"
         },
         {
-          "match": "{{\\s*(.+?)}}",
-          "captures": {
+          "begin": "\\{\\{\\s*",
+          "beginCaptures": {
             "0": {
-              "name": "punctuation.definition.begin.bracket.curly.go"
-            },
-            "1": {
-              "patterns": [
-                {
-                  "include": "source.go"
-                }
-              ]
-            },
-            "2": {
-              "name": "punctuation.definition.end.bracket.curly.go"
+              "name": "punctuation.section.embedded.begin.go-template"
             }
           },
-          "patterns": [],
+          "end": "\\s*\\}\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.go-template"
+            }
+          },
+          "patterns": [
+            {
+              "include": "source.go"
+            }
+          ],
           "name": "expression.gotempl-node-template.templ"
         },
         {
