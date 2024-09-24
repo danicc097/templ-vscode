@@ -4,6 +4,9 @@
   "scopeName": "source.templ",
   "patterns": [
     {
+      "include": "#go-template"
+    },
+    {
       "include": "#script-template"
     },
     {
@@ -17,6 +20,84 @@
     }
   ],
   "repository": {
+    "go-template": {
+      "name": "go-template.templ",
+      "begin": "^(gotempl) ([A-z_][A-z_0-9]*\\()",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.go"
+        },
+        "2": {
+          "patterns": [
+            {
+              "include": "source.go"
+            }
+          ]
+        }
+      },
+      "end": "(?<=^}$)",
+      "patterns": [
+        {
+          "match": "{{\\s*(end)\\s*}}",
+          "captures": {
+            "0": {
+              "name": "punctuation.definition.begin.bracket.curly.go"
+            },
+            "1": {
+              "name": "keyword.control.go"
+            },
+            "2": {
+              "name": "punctuation.definition.end.bracket.curly.go"
+            }
+          },
+          "name": "expression.gotempl-node-end.templ"
+        },
+        {
+          "match": "{{\\s*(.+?)}}",
+          "captures": {
+            "0": {
+              "name": "punctuation.definition.begin.bracket.curly.go"
+            },
+            "1": {
+              "patterns": [
+                {
+                  "include": "source.go"
+                }
+              ]
+            },
+            "2": {
+              "name": "punctuation.definition.end.bracket.curly.go"
+            }
+          },
+          "patterns": [],
+          "name": "expression.gotempl-node-template.templ"
+        },
+        {
+          "match": "%{\\s*(.+?)}%",
+          "captures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.go-template"
+            },
+            "1": {
+              "patterns": [
+                {
+                  "include": "source.go"
+                }
+              ]
+            },
+            "2": {
+              "name": "punctuation.section.embedded.end.go-template"
+            }
+          },
+          "patterns": [],
+          "name": "expression.gotempl-string-template.templ"
+        },
+        {
+          "comment": "Syntax for go code fragments inside go template as well. FIXME: gotempl patterns should have preference.",
+          "include": "/////source.go"
+        }
+      ]
+    },
     "script-template": {
       "begin": "^(script) ([A-z_][A-z_0-9]*\\()",
       "beginCaptures": {
