@@ -47,6 +47,9 @@
       },
       "patterns": [
         {
+          "include": "#import-expression"
+        },
+        {
           "match": "{{\\s*(end)\\s*}}",
           "captures": {
             "0": {
