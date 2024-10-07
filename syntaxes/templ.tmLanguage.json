@@ -617,7 +617,7 @@
               ]
             }
           },
-          "end": "(?<=\\))$|(?<=})$|(?<=$)",
+          "end": "(?<=\\))|(?<=})|(?=\\s*@)",
           "patterns": [
             {
               "name": "struct-method.import-expression.templ",
